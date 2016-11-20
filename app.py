@@ -1,15 +1,10 @@
 import json
 import datetime
 import random
-
-from enum import Enum
-
-from parse import Meal
-from parse import MenuParser
+import os
 
 from flask import Flask
 from flask import render_template
-from flask import request
 
 app = Flask(__name__)
 
@@ -19,6 +14,7 @@ def isWeekend(date):
         return True
     else:
         return False
+
 
 def fuckShitUp(s):
     # Divide into words
@@ -35,7 +31,7 @@ app.jinja_env.globals.update(fuckShitUp=fuckShitUp)
 currentDate = datetime.datetime.today()
 currentPath = "./menus/"
 
-dateNamePath = currentPath + currentDate.year + "-" + currentDate.month + "-" + currentDate.day
+dateNamePath = currentPath + str(currentDate.year) + "-" + str(currentDate.month) + "-" + str(currentDate.day)
 
 # check if file exists yet
 if os.path.exists(dateNamePath) and os.path.isfile(dateNamePath):
@@ -44,8 +40,7 @@ if os.path.exists(dateNamePath) and os.path.isfile(dateNamePath):
     file.close()
     menus = json.loads(menuJSON)
 else:
-    menus = {"b":[],"l":[],"d":[]}
-
+    menus = {"b": [], "l": [], "d": []}
 
 
 @app.route('/')
@@ -76,6 +71,7 @@ def showBreakfastPage():
         failText = "There's no breakfast on the weekend, motherfucker."
         return render_template('fail.html', failText=failText, currentDate=currentDate)
 
+
 @app.route('/brunch')
 def showBrunchPage():
     if isWeekend(currentDate):
@@ -93,7 +89,8 @@ def showLunchPage():
         return render_template('main.html', menu=menu, currentDate=currentDate)
     else:
         failText = "There's no lunch on the weekend, motherfucker."
-        return render_template('fail.html', failText=failText, currentDate=currentDate)
+        return render_template('fail.html', failText=failText,
+                               currentDate=currentDate)
 
     menu = menus["Lunch"]
     return render_template('main.html', menu=menu, currentDate=currentDate)

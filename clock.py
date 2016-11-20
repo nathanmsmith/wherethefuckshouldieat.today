@@ -9,7 +9,6 @@ import json
 sched = BlockingScheduler()
 
 
-
 @sched.scheduled_job('cron', hour=0, minute=0,
                      second=0, timezone='America/Los_Angeles')
 def timed_job():
