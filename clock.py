@@ -14,7 +14,7 @@ sched = BlockingScheduler()
 def timed_job():
     shouldGetNutrition = False
     currentDate = datetime.datetime.today()
-    dateString = currentDate.strftime('./menus/%Y-%m-%d')
+    dateString = currentDate.strftime('~/menus/%Y-%m-%d')
 
     menus = {"Breakfast": [], "Lunch": [], "Dinner": []}
 
