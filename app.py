@@ -37,11 +37,26 @@ print("date name path:" + dateNamePath)
 
 # check if file exists yet
 if os.path.exists(dateNamePath) and os.path.isfile(dateNamePath):
+    print("file exists")
     file = open(dateNamePath, "r")
     menuJSON = file.read()
     file.close()
     menus = json.loads(menuJSON)
 else:
+    print("file doesn't exist")
+    menus = {"Breakfast": [], "Lunch": [], "Dinner": []}
+
+dateNamePath = ".." + currentPath
+
+# check if file exists yet
+if os.path.exists(dateNamePath) and os.path.isfile(dateNamePath):
+    print("file exists")
+    file = open(dateNamePath, "r")
+    menuJSON = file.read()
+    file.close()
+    menus = json.loads(menuJSON)
+else:
+    print("file doesn't exist")
     menus = {"Breakfast": [], "Lunch": [], "Dinner": []}
 
 
