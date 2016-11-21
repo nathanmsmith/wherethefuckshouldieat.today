@@ -29,7 +29,7 @@ app.jinja_env.globals.update(isWeekend=isWeekend)
 app.jinja_env.globals.update(fuckShitUp=fuckShitUp)
 
 currentDate = datetime.datetime.today()
-currentPath = "~/menus/"
+currentPath = "./storage/menus/"
 
 dateNamePath = currentPath + str(currentDate.year) + "-" + str(currentDate.month) + "-" + str(currentDate.day)
 
