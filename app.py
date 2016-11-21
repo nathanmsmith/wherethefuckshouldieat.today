@@ -29,9 +29,11 @@ app.jinja_env.globals.update(isWeekend=isWeekend)
 app.jinja_env.globals.update(fuckShitUp=fuckShitUp)
 
 currentDate = datetime.datetime.today()
-currentPath = "./storage/menus/"
+currentPath = "storage/menus/"
 
 dateNamePath = currentPath + str(currentDate.year) + "-" + str(currentDate.month) + "-" + str(currentDate.day)
+
+print("date name path:" + dateNamePath)
 
 # check if file exists yet
 if os.path.exists(dateNamePath) and os.path.isfile(dateNamePath):
@@ -79,7 +81,7 @@ def showBrunchPage():
         return render_template('main.html', menu=menu, currentDate=currentDate)
     else:
         failText = "There's no brunch on weekdays, motherfucker."
-        return render_template('fail.htm', failText=failText, currentDate=currentDate)
+        return render_template('fail.html', failText=failText, currentDate=currentDate)
 
 
 @app.route('/lunch')
