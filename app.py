@@ -42,7 +42,7 @@ if os.path.exists(dateNamePath) and os.path.isfile(dateNamePath):
     file.close()
     menus = json.loads(menuJSON)
 else:
-    menus = {"b": [], "l": [], "d": []}
+    menus = {"Breakfast": [], "Lunch": [], "Dinner": []}
 
 
 @app.route('/')
