@@ -1,54 +1,40 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Where The Fuck Should I Eat?</title>
-    <link rel="stylesheet" type="text/css" href="static/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="static/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat" rel="stylesheet">
-  </head>
-  <body>
-    <div class="container">
-      <h1 id="title">Where The Fuck Should I Eat?</h1>
-      {% if isWeekend(currentDate) %}
-        <nav>
-          <a href="/brunch">Brunch</a>
-          <a href="/dinner">Dinner</a>
-        </nav>
-      {% else %}
-        <nav>
-          <a href="/breakfast">Breakfast</a>
-          <a href="/lunch">Lunch</a>
-          <a href="/dinner">Dinner</a>
-        </nav>
-      {% endif %}
-        {% for restaurant in menu %}
-        <div class="col-md-3">
-          <div class="col-md-12">
-            <h1>
-              {{ restaurant['Restaurant Name'] }}
-              <!--{% if currentDate not in restaurant[kRestaurantHours] %}
-                (Closed)
-              {% else %}
-                (Open)
-              {% endif %}-->
-            </h1>
-              {% for kitchen in restaurant['Restaurant Kitchens'] %}
-                <h3>
-                  {{ kitchen['Kitchen Name'] }}
-                </h3>
-                <ul>
-                  {% for item in kitchen['Kitchen Items'] %}
-                    <li>{{ fuckShitUp(item) }}</li>
-                  {% endfor %}
-                </ul>
-              {% endfor %}
-            </div>
-          </div>
+{% extends "layout.html" %}
+{% block content %}
+<h1 id="title">Where The Fuck Should I Eat?</h1>
+{% if isWeekend(currentDate) %}
+  <nav>
+    <a href="/brunch">Brunch</a>
+    <a href="/dinner">Dinner</a>
+  </nav>
+{% else %}
+  <nav>
+    <a href="/breakfast">Breakfast</a>
+    <a href="/lunch">Lunch</a>
+    <a href="/dinner">Dinner</a>
+  </nav>
+{% endif %}
+  {% for restaurant in menu %}
+  <div class="col-md-3">
+    <div class="col-md-12">
+      <h1>
+        {{ restaurant['Restaurant Name'] }}
+        <!--{% if currentDate not in restaurant[kRestaurantHours] %}
+          (Closed)
+        {% else %}
+          (Open)
+        {% endif %}-->
+      </h1>
+        {% for kitchen in restaurant['Restaurant Kitchens'] %}
+          <h3>
+            {{ kitchen['Kitchen Name'] }}
+          </h3>
+          <ul>
+            {% for item in kitchen['Kitchen Items'] %}
+              <li>{{ fuckShitUp(item) }}</li>
+            {% endfor %}
+          </ul>
         {% endfor %}
-
-
+      </div>
     </div>
-  </body>
-</html>
+  {% endfor %}
+{% endblock %}

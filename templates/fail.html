@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Where The Fuck Should I Eat?</title>
-    <link rel="stylesheet" type="text/css" href="static/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="static/style.css">
-  </head>
-  <body>
-    <div class="container">
-      <h1>Where The Fuck Should I Eat?</h1>
+{% extends "layout.html" %}
+{% block content %}
+<h1>Where The Fuck Should I Eat?</h1>
       {% if isWeekend(currentDate) %}
         <nav>
           <a href="/brunch">Brunch</a>
@@ -25,6 +16,4 @@
       <div class="col-xs-offset-4 col-xs-4">
         <h1>{{ failText }}</h1>
       </div>
-    </div>
-  </body>
-</html>
+{% endblock %}
