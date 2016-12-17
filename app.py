@@ -1,5 +1,6 @@
-from datetime import datetime, date, timedelta
+from datetime import datetime, date
 import random
+import os
 from pymongo import MongoClient
 
 from flask import Flask
@@ -27,7 +28,9 @@ def fuckShitUp(s):
 app.jinja_env.globals.update(isWeekend=isWeekend)
 app.jinja_env.globals.update(fuckShitUp=fuckShitUp)
 
-client = MongoClient('localhost', 27017)
+uri = os.environ.get('MONGODB_URI')
+
+client = MongoClient()
 db = client.menus
 weeklymenus = db.weeklymenus
 

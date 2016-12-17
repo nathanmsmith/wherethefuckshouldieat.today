@@ -15,11 +15,11 @@ if __name__ == "__main__":
     weeklymenus = db.weeklymenus
 
     for i in range(0, 7):
-        date = today + timedelta(days=i)
+        dateTime = datetime.combine(today + timedelta(days=i), datetime.min.time())
         # Overwrite old entry if need be
-        weeklymenus.find_one_and_delete({"Date": date}))
+        weeklymenus.find_one_and_delete({"Date": dateTime})
 
-        menus = {"Date": datetime.combine(date, datetime.min.time()), "Breakfast": [], "Lunch": [], "Dinner": []}
+        menus = {"Date": dateTime, "Breakfast": [], "Lunch": [], "Dinner": []}
 
         # breakfast
         meal = Meal.breakfast
