@@ -2,6 +2,7 @@ from pymongo import MongoClient
 from datetime import datetime, date, timedelta
 from parse import Meal
 from parse import MenuParser
+import os
 
 import pprint
 
@@ -10,8 +11,9 @@ if __name__ == "__main__":
     today = date.today()
     shouldGetNutrition = False
 
-    client = MongoClient('localhost', 27017)
-    db = client.menus
+    uri = os.environ.get('MONGODB_URI')
+    client = MongoClient(uri)
+    db = client.heroku_80660qwq
     weeklymenus = db.weeklymenus
 
     for i in range(0, 7):
@@ -23,21 +25,21 @@ if __name__ == "__main__":
 
         # breakfast
         meal = Meal.breakfast
-        parser = MenuParser(date, meal)
+        parser = MenuParser(dateTime, meal)
         menu = parser.getMenus(shouldGetNutrition)
         if menu is not None:
             menus["Breakfast"] = menu
 
         # lunch
         meal = Meal.lunch
-        parser = MenuParser(date, meal)
+        parser = MenuParser(dateTime, meal)
         menu = parser.getMenus(shouldGetNutrition)
         if menu is not None:
             menus["Lunch"] = menu
 
         # dinner
         meal = Meal.dinner
-        parser = MenuParser(date, meal)
+        parser = MenuParser(dateTime, meal)
         menu = parser.getMenus(shouldGetNutrition)
         if menu is not None:
             menus["Dinner"] = menu

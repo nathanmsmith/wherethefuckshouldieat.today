@@ -31,12 +31,11 @@ app.jinja_env.globals.update(fuckShitUp=fuckShitUp)
 uri = os.environ.get('MONGODB_URI')
 
 client = MongoClient(uri)
-db = client.menus
-weeklymenus = db.weeklymenus
+db = client.heroku_80660qwq
 
 today = datetime.today()
 
-menus = weeklymenus.find_one({"Date": datetime.combine(date.today(), datetime.min.time())})
+menus = db.weeklymenus.find_one({"Date": datetime.combine(date.today(), datetime.min.time())})
 if menus is None:
     menus = {"Breakfast": [], "Lunch": [], "Dinner": []}
 print(menus)
