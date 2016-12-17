@@ -28,14 +28,18 @@ def fuckShitUp(s):
 app.jinja_env.globals.update(isWeekend=isWeekend)
 app.jinja_env.globals.update(fuckShitUp=fuckShitUp)
 
+print(1)
+
 uri = os.environ.get('MONGODB_URI')
 
+print(2)
 client = MongoClient(uri)
 db = client.heroku_80660qwq
-
+print(3)
 today = datetime.today()
-
+print(4)
 menus = db.weeklymenus.find_one({"Date": datetime.combine(date.today(), datetime.min.time())})
+print(5)
 if menus is None:
     menus = {"Breakfast": [], "Lunch": [], "Dinner": []}
 print(menus)
