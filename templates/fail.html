@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 <h1>Where The Fuck Should I Eat?</h1>
-      {% if isWeekend(currentDate) %}
+      {% if isWeekend(today) %}
         <nav>
           <a href="/brunch">Brunch</a>
           <a href="/dinner">Dinner</a>
