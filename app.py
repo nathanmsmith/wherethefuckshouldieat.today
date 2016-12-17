@@ -30,7 +30,7 @@ app.jinja_env.globals.update(fuckShitUp=fuckShitUp)
 
 uri = os.environ.get('MONGODB_URI')
 
-client = MongoClient()
+client = MongoClient(uri)
 db = client.menus
 weeklymenus = db.weeklymenus
 
